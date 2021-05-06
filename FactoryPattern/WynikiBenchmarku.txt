@@ -1,0 +1,7 @@
+|                                          Method |      Mean |    Error |   StdDev |
+|------------------------------------------------ |----------:|---------:|---------:|
+|                        AbstractFactoryBenchmark |  12.81 ns | 0.288 ns | 0.542 ns |
+|                          FactoryMethodBenchmark |  13.07 ns | 0.205 ns | 0.191 ns |
+|                          SimpleFactoryBenchmark |  15.93 ns | 0.207 ns | 0.173 ns |
+|               ClassRegistrationFactoryBenchmark |  62.64 ns | 0.802 ns | 0.750 ns |
+| ClassRegistrationFactoryWithReflectionBenchmark | 151.17 ns | 0.453 ns | 0.424 ns |
