@@ -8,7 +8,7 @@ namespace ObjectPool
 {
     public class FibonnaciPool : GenericPool<Fibonacci>
     {
-        private FibonnaciPool(Func<Fibonacci> objectGenerator, int maxCount, int minCount) : base(objectGenerator, maxCount, minCount)//TODO poczytać o base
+        private FibonnaciPool(Func<Fibonacci> objectGenerator, int maxCount, int minCount) : base(objectGenerator, maxCount, minCount)
         { }
 
         private static FibonnaciPool _instance;

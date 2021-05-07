@@ -14,7 +14,7 @@ namespace ObjectPool.Objects
         public IAlgorithmObjectPrototype Clone()
         {
             Factorial clone = (Factorial)this.MemberwiseClone();
-            //clone.calcConfig = new CalcConfig(calcConfig.config);
+            //clone.calcConfig = new CalcConfig(calcConfig.config);//TODO Czy to napewno deepkopia?
             return clone;
         }
         public int GetResult(int val)

@@ -1,0 +1,26 @@
+val = 6
+|               Method |      Mean |    Error |   StdDev |
+|--------------------- |----------:|---------:|---------:|
+|   B10Threads5Objects |  39.07 us | 0.394 us | 0.369 us |
+|  B10Threads10Objects |  38.37 us | 0.506 us | 0.449 us |
+|  B10Threads15Objects |  37.03 us | 0.707 us | 0.694 us |
+|  B10Threads20Objects |  42.57 us | 0.695 us | 0.616 us |
+|  B10Threads25Objects |  39.14 us | 0.328 us | 0.256 us |
+|  B100Threads5Objects | 302.20 us | 5.643 us | 5.003 us |
+| B100Threads10Objects | 314.42 us | 1.836 us | 1.533 us |
+| B100Threads15Objects | 331.63 us | 2.483 us | 2.073 us |
+| B100Threads20Objects | 316.53 us | 3.762 us | 3.519 us |
+| B100Threads25Objects | 349.84 us | 4.214 us | 3.736 us |
+val = 12
+|               Method |      Mean |    Error |    StdDev |
+|--------------------- |----------:|---------:|----------:|
+|   B10Threads5Objects |  42.40 us | 0.642 us |  0.600 us |
+|  B10Threads10Objects |  34.48 us | 0.635 us |  0.594 us |
+|  B10Threads15Objects |  37.51 us | 0.325 us |  0.288 us |
+|  B10Threads20Objects |  36.51 us | 0.686 us |  0.705 us |
+|  B10Threads25Objects |  36.87 us | 0.589 us |  0.551 us |
+|  B100Threads5Objects | 363.21 us | 6.958 us |  6.834 us |
+| B100Threads10Objects | 338.29 us | 6.746 us | 13.628 us |
+| B100Threads15Objects | 310.53 us | 6.193 us | 10.000 us |
+| B100Threads20Objects | 315.95 us | 3.809 us |  3.377 us |
+| B100Threads25Objects | 391.72 us | 7.341 us |  6.867 us |

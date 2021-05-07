@@ -13,12 +13,12 @@ namespace ObjectPool
         public FibonnaciPool fibonnaciPool;
         public GDC2Pool gdc2Pool;
          //private CalcThread thread = new CalcThread();
-        public CalcThreadBuilder()
+        public CalcThreadBuilder(int maxCount, int minCount)
         {
             PrototypesManager prototypesManager = new PrototypesManager();
-            factorialPool = FactorialPool.GetInstance(prototypesManager.CreateFactorial, 2, 8);
-            fibonnaciPool = FibonnaciPool.GetInstance(prototypesManager.CreateFibonacci, 2, 8);
-            gdc2Pool = GDC2Pool.GetInstance(prototypesManager.CreateGDC2, 2, 8);
+            factorialPool = FactorialPool.GetInstance(prototypesManager.CreateFactorial, minCount, maxCount);
+            fibonnaciPool = FibonnaciPool.GetInstance(prototypesManager.CreateFibonacci, minCount, maxCount);
+            gdc2Pool = GDC2Pool.GetInstance(prototypesManager.CreateGDC2, minCount, maxCount);
         }
         public Factorial TakeFactorial(EFunction eFunction)
         {

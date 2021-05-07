@@ -15,47 +15,33 @@ namespace ObjectPool.Tests
         public void CheckIfCalculateRecursive()
         {
             CalcThread thread = new CalcThread();
-            CalcThreadBuilder builder = new CalcThreadBuilder();
-            thread.Run(3, 5, EFunction.RECURSIVE);
-            var factorialResult = thread.factorialTaskResults;
-            var fibonacciResult = thread.fibonacciTaskResults;
-            var gdc2Result = thread.gdc2TaskResults;
+            thread.Run(3, 10, EFunction.RECURSIVE);
+            var factorialResult = thread.factorialTaskResult;
+            var fibonacciResult = thread.fibonacciTaskResult;
+            var gdc2Result = thread.gdc2TaskResult;
 
-            foreach (var result in factorialResult) 
-            {
-                Assert.Equal(6, result);
-            }
-            foreach (var result in fibonacciResult)
-            {
-                Assert.Equal(2, result);
-            }
-            foreach (var result in gdc2Result)
-            {
-                Assert.Equal(1, result);
-            }
+    
+            Assert.Equal(6, factorialResult);
+
+            Assert.Equal(2, fibonacciResult);
+            
+            Assert.Equal(1, gdc2Result);
+            
         }
         [Fact]
         public void CheckIfCalculateIterative()
         {
             CalcThread thread = new CalcThread();
-            CalcThreadBuilder builder = new CalcThreadBuilder();
-            thread.Run(3, 5, EFunction.ITERATIVE);
-            var factorialResult = thread.factorialTaskResults;
-            var fibonacciResult = thread.fibonacciTaskResults;
-            var gdc2Result = thread.gdc2TaskResults;
+            thread.Run(3, 100, EFunction.ITERATIVE);
+            var factorialResult = thread.factorialTaskResult;
+            var fibonacciResult = thread.fibonacciTaskResult;
+            var gdc2Result = thread.gdc2TaskResult;
 
-            foreach (var result in factorialResult)
-            {
-                Assert.Equal(6, result);
-            }
-            foreach (var result in fibonacciResult)
-            {
-                Assert.Equal(2, result);
-            }
-            foreach (var result in gdc2Result)
-            {
-                Assert.Equal(1, result);
-            }
+            Assert.Equal(6, factorialResult);
+
+            Assert.Equal(2, fibonacciResult);
+
+            Assert.Equal(1, gdc2Result);
         }
         [Fact]
         public void CheckPoolObjectsCounts() 
@@ -86,10 +72,46 @@ namespace ObjectPool.Tests
             Assert.True(gdc2Pool.GetCount() <= maxCount);
 
         }
+        [Fact]
+        public void CheckIfSameInstances()
+        {
+            var prototypesManager = new PrototypesManager();
+            var factorialInstance = prototypesManager.CreateFactorial();
+            var fibonacciInstance = prototypesManager.CreateFibonacci();
+            var gdc2Instance = prototypesManager.CreateGDC2();
+
+            Assert.Equal(typeof(Factorial), factorialInstance.GetType());
+            Assert.Equal(typeof(Fibonacci), fibonacciInstance.GetType());
+            Assert.Equal(typeof(GDC2), gdc2Instance.GetType());
+        }
+        [Fact]
+        public void CheckIfInstancesAreCorectlyBuild()
+        {
+            var builder = new CalcThreadBuilder(2, 8);
+            var factorialRecursive = builder.TakeFactorial(EFunction.RECURSIVE);
+            var fibonacciRecursive = builder.TakeFibonacci(EFunction.RECURSIVE);
+            var gdc2Recursive = builder.TakeGDC2(EFunction.RECURSIVE);
+
+            Assert.Equal(typeof(Factorial), factorialRecursive.GetType());
+            Assert.Equal(typeof(Fibonacci), fibonacciRecursive.GetType());
+            Assert.Equal(typeof(GDC2), gdc2Recursive.GetType());
+
+            Assert.Equal(EFunction.RECURSIVE, factorialRecursive.calcConfig.config);
+            Assert.Equal(EFunction.RECURSIVE, fibonacciRecursive.calcConfig.config);
+            Assert.Equal(EFunction.RECURSIVE, gdc2Recursive.calcConfig.config);
+
+            var factorialIterative = builder.TakeFactorial(EFunction.ITERATIVE);
+            var fibonacciIterative = builder.TakeFibonacci(EFunction.ITERATIVE);
+            var gdc2Iterative = builder.TakeGDC2(EFunction.ITERATIVE);
+
+            Assert.Equal(typeof(Factorial), factorialIterative.GetType());
+            Assert.Equal(typeof(Fibonacci), fibonacciIterative.GetType());
+            Assert.Equal(typeof(GDC2), gdc2Iterative.GetType());
+
+            Assert.Equal(EFunction.ITERATIVE, factorialIterative.calcConfig.config);
+            Assert.Equal(EFunction.ITERATIVE, fibonacciIterative.calcConfig.config);
+            Assert.Equal(EFunction.ITERATIVE, gdc2Iterative.calcConfig.config);
+        }
     }
 }
-//TODO testy prototypów
-//TODO testy budowniczych
-//TODO testy dodawania odejmowania elementów.
-//TODO benchmark dla niewielu w¹tków i 5 ró¿nych maksymalnych wielkoœci puli. 5,10,15,20,25 obiektów
-//TODO benchmark dla wielu w¹tków i 5 ró¿nych maksymalnych wielkoœci puli. 5,10,15,20,25 obiektów
+
