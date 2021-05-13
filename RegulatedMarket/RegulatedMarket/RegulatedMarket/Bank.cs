@@ -4,7 +4,9 @@ using System.Text;
 
 namespace RegulatedMarket
 {
-    class Bank
+    public class Bank
     {
+        public Dictionary<Product, double> ProductPrieces { get; set; }
+        public Inflation inflation { get; set; } 
     }
 }
