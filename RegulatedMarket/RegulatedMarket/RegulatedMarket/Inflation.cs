@@ -7,7 +7,9 @@ namespace RegulatedMarket
     public class Inflation
     {
         private Inflation(double value)
-        { }
+        {
+            Value = value;
+        }
 
         private static Inflation _instance;
         private static readonly object _lock = new object();
@@ -26,5 +28,6 @@ namespace RegulatedMarket
             }
             return _instance;
         }
+        public double Value { get; set; }
     }
 }

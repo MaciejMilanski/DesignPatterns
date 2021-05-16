@@ -6,7 +6,7 @@ namespace RegulatedMarket
 {
     public class ConsumerPreferences
     {
-        Product Product { get; set; }
-        double Preference { get; set; }
+        public Product Product { get; set; }
+        public double Preference { get; set; }
     }
 }
